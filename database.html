@@ -1,0 +1,12 @@
+﻿create database events;
+use events;
+
+create table event(
+id int primary key identity not null,
+name varchar(100) unique not null,
+startdate varchar(100),
+endtdate varchar(100),
+description text
+)
+
+select * from event
