@@ -15,5 +15,25 @@ namespace ASPMvc.Service
         {
             return dal.insertEvent(events);
         }
+
+        public List<Event> getEventList()
+        {
+            return dal.getEventList();
+        }
+
+        public List<Event> getEventById(string id)
+        {
+            return dal.getEventById(id);
+        }
+
+        public int updateEvent(Event events)
+        {
+            return dal.updateEvent(events);
+        }
+
+        public int deleteEvent(string id)
+        {
+            return dal.deleteEvent(id);
+        }
     }
 }

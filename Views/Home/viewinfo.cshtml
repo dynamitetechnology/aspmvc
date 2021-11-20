@@ -1,0 +1,44 @@
+﻿@model IEnumerable<ASPMvc.Models.Event>
+@{
+    ViewBag.Title = "viewinfo";
+}
+
+<h2>viewinfo</h2>
+
+<div class="container mt-5">
+    <button type="button" class="btn btn-primary mb-3" data-toggle="modal" data-target="#exampleModal">
+        Event
+    </button>
+
+    <table class="table" id="dataTable">
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Name</th>
+                <th scope="col">Start Date</th>
+                <th scope="col">End Date</th>
+                <th scope="col">Description</th>
+            </tr>
+        </thead>
+        <tbody>
+
+            @foreach (var list in Model)
+            {
+                <tr>
+                    <th scope="row">@Html.DisplayFor(ModelItem => list.id)</th>
+                    <td>@Html.DisplayFor(ModelItem => list.eventName)</td>
+                    <td>@Html.DisplayFor(ModelItem => list.startDate)</td>
+                    <td>@Html.DisplayFor(ModelItem => list.endDate)</td>
+                    <td>
+                        @Html.DisplayFor(ModelItem => list.description)
+                    </td>
+                </tr>
+            }
+
+
+
+        </tbody>
+    </table>
+</div>
+
+

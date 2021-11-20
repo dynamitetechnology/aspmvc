@@ -12,7 +12,9 @@ namespace ASPMvc.Controllers
     {
         public ActionResult Index()
         {
-            return View();
+            EventService service = new EventService();
+            List<Event> list = service.getEventList();
+            return View(list);
         }
 
         public ActionResult About()
@@ -34,7 +36,36 @@ namespace ASPMvc.Controllers
             EventService service = new EventService();
           int status =   service.insertEvent(events);
 
-            return View();
+            return Redirect("/Home/Index");
+        }
+
+        public ActionResult viewinfo(string id)
+        {
+            EventService service = new EventService();
+            List<Event> list = service.getEventById(id);
+            return View(list);
+        }
+
+        public ActionResult edit(string id)
+        {
+            EventService service = new EventService();
+            List<Event> list = service.getEventById(id);
+            return View(list);
+        }
+
+        public ActionResult UpdateEvent(Event events)
+        {
+            EventService service = new EventService();
+            int status = service.updateEvent(events);
+            return Redirect("/Home/Index");
+        }
+
+        public ActionResult delete(string id)
+        {
+            EventService service = new EventService();
+            int status = service.deleteEvent(id);
+
+            return Redirect("/Home/Index");
         }
     }
 }

@@ -1,0 +1,40 @@
+﻿@model IEnumerable<ASPMvc.Models.Event>
+@{
+    ViewBag.Title = "edit";
+}
+
+<h2>edit</h2>
+@foreach (var list in Model)
+{
+    <form action="/Home/UpdateEvent" method="post">
+        <div class="form-group">
+            <label for="exampleInputEmail1">Event Name</label>
+            <input type="text" class="form-control" name="eventName" value="@Html.DisplayFor(ModelItem => list.eventName)">
+            <input type="hidden" class="form-control" name="id" value="@Html.DisplayFor(ModelItem => list.id)">
+        </div>
+
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label for="exampleInputEmail1">Start Date</label>
+                <input type="datetime-local" class="form-control" name="startDate" value="@Html.DisplayFor(ModelItem => list.startDate)">
+            </div>
+
+            <div class="form-group col-md-6">
+                <label for="exampleInputEmail1">End Date</label>
+                <input type="datetime-local" class="form-control" name="endDate" value="@Html.DisplayFor(ModelItem => list.endDate)">
+            </div>
+
+        </div>
+
+
+        <div class="form-group">
+            <label for="exampleInputEmail1">Description</label>
+            <textarea class="form-control" name="description">@Html.DisplayFor(ModelItem => list.description)</textarea>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Submit</button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+    </form>
+}
+
+
