@@ -64,7 +64,6 @@ namespace ASPMvc.Controllers
         {
             EventService service = new EventService();
             int status = service.deleteEvent(id);
-
             return Redirect("/Home/Index");
         }
     }
