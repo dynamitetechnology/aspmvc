@@ -3,9 +3,10 @@
     ViewBag.Title = "Home Page";
 }
 
+@Html.Partial("_HeaderLinks")
 <div class="container mt-5">
     <button type="button" class="btn btn-primary mb-3" data-toggle="modal" data-target="#exampleModal">
-      Event
+        Event
     </button>
 
     <table class="table" id="dataTable">
@@ -22,21 +23,21 @@
 
             @foreach (var list in Model)
             {
-            <tr>
-                <th scope="row">@Html.DisplayFor(ModelItem => list.id)</th>
-                <td>@Html.DisplayFor(ModelItem => list.eventName)</td>
-                <td>@Html.DisplayFor(ModelItem => list.startDate)</td>
-                <td>@Html.DisplayFor(ModelItem => list.endDate)</td>
-                <td>
-                    <a class="btn btn-primary" href="/Home/viewinfo?id=@Html.DisplayFor(ModelItem => list.id)"><i class="bi bi-eye-fill"></i>View</a>
-                    <a class="btn btn-success" href="/Home/edit?id=@Html.DisplayFor(ModelItem => list.id)"><i class="bi bi-pencil"></i>Edit</a>
-                    <a class="btn btn-danger" href="/Home/delete?id=@Html.DisplayFor(ModelItem => list.id)"><i class="bi bi-trash"></i>Delete</a>
-                </td>
-            </tr>
+                <tr>
+                    <th scope="row">@Html.DisplayFor(ModelItem => list.id)</th>
+                    <td>@Html.DisplayFor(ModelItem => list.eventName)</td>
+                    <td>@Html.DisplayFor(ModelItem => list.startDate)</td>
+                    <td>@Html.DisplayFor(ModelItem => list.endDate)</td>
+                    <td>
+                        <a class="btn btn-primary" href="/Home/viewinfo?id=@Html.DisplayFor(ModelItem => list.id)"><i class="bi bi-eye-fill"></i>View</a>
+                        <a class="btn btn-success" href="/Home/edit?id=@Html.DisplayFor(ModelItem => list.id)"><i class="bi bi-pencil"></i>Edit</a>
+                        <a class="btn btn-danger" href="/Home/delete?id=@Html.DisplayFor(ModelItem => list.id)"><i class="bi bi-trash"></i>Delete</a>
+                    </td>
+                </tr>
             }
-            
-        
-        
+
+
+
         </tbody>
     </table>
 </div>
@@ -72,7 +73,7 @@
 
                     </div>
 
-                
+
                     <div class="form-group">
                         <label for="exampleInputEmail1">Description</label>
                         <textarea class="form-control" name="description"></textarea>
@@ -82,7 +83,7 @@
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                 </form>
             </div>
-       
+
         </div>
     </div>
 </div>

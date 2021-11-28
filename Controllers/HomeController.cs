@@ -97,8 +97,70 @@ namespace ASPMvc.Controllers
                 jsonStatus.Add("Message", Ex.Message);
                 return (new JavaScriptSerializer()).Serialize(jsonStatus);
             }
-           // return null;
+        
+        }
 
+
+        [HttpPost]
+        public String UpdateEventApi(Event events)
+        {
+            Dictionary<string, string> jsonStatus = new Dictionary<string, string>();
+            try
+            {
+                EventService service = new EventService();
+                int status = service.updateEvent(events);
+
+
+                if (status > 0)
+                {
+                    jsonStatus.Add("status", "200");
+                    jsonStatus.Add("Message", "Success");
+                    return (new JavaScriptSerializer()).Serialize(jsonStatus);
+                }
+                else
+                {
+                    jsonStatus.Add("status", "400");
+                    jsonStatus.Add("Message", "Event Name Allready Exist");
+                    return (new JavaScriptSerializer()).Serialize(jsonStatus);
+                }
+            }
+            catch (Exception Ex)
+            {
+                jsonStatus.Add("status", "500");
+                jsonStatus.Add("Message", Ex.Message);
+                return (new JavaScriptSerializer()).Serialize(jsonStatus);
+            }
+        }
+
+        [HttpPost]
+        public String DeleteEventApi(string  id)
+        {
+            Dictionary<string, string> jsonStatus = new Dictionary<string, string>();
+            try
+            {
+                EventService service = new EventService();
+                int status = service.deleteEvent(id);
+
+
+                if (status > 0)
+                {
+                    jsonStatus.Add("status", "200");
+                    jsonStatus.Add("Message", "Success");
+                    return (new JavaScriptSerializer()).Serialize(jsonStatus);
+                }
+                else
+                {
+                    jsonStatus.Add("status", "400");
+                    jsonStatus.Add("Message", "Event Name Allready Exist");
+                    return (new JavaScriptSerializer()).Serialize(jsonStatus);
+                }
+            }
+            catch (Exception Ex)
+            {
+                jsonStatus.Add("status", "500");
+                jsonStatus.Add("Message", Ex.Message);
+                return (new JavaScriptSerializer()).Serialize(jsonStatus);
+            }
         }
     }
 }
