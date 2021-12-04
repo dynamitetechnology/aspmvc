@@ -2,39 +2,127 @@
 @{
     ViewBag.Title = "edit";
 }
-
-<h2>edit</h2>
-@foreach (var list in Model)
-{
-    <form action="/Home/UpdateEvent" method="post">
-        <div class="form-group">
-            <label for="exampleInputEmail1">Event Name</label>
-            <input type="text" class="form-control" name="eventName" value="@Html.DisplayFor(ModelItem => list.eventName)">
-            <input type="hidden" class="form-control" name="id" value="@Html.DisplayFor(ModelItem => list.id)">
+@Html.Partial("HeaderLinks")
+<div class="container-fluid">
+    <!-- Page Heading -->
+    <div class="d-sm-flex align-items-center justify-content-between mb-4">
+        <h1 class="h3 mb-0 text-gray-800">Edit</h1>
+        <a href="/Home/Index" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">
+            <i class="fas fa-long-arrow-alt-left fa-sm text-white-50"></i> Back
+        </a>
+    </div>
+    <div class="card shadow mb-4">
+        <!-- Card Header - Dropdown -->
+        <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+            <h6 class="m-0 font-weight-bold text-primary">Earnings Overview</h6>
+            <div class="dropdown no-arrow">
+                <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
+                   data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
+                </a>
+                <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in"
+                     aria-labelledby="dropdownMenuLink">
+                    <div class="dropdown-header">Dropdown Header:</div>
+                    <a class="dropdown-item" href="#">Action</a>
+                    <a class="dropdown-item" href="#">Another action</a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" href="#">Something else here</a>
+                </div>
+            </div>
         </div>
+        <div class="card-body">
 
-        <div class="form-row">
-            <div class="form-group col-md-6">
-                <label for="exampleInputEmail1">Start Date</label>
-                <input type="datetime-local" class="form-control" name="startDate" value="@Html.DisplayFor(ModelItem => list.startDate)">
+            @foreach (var list in Model)
+            {
+                <form action="/Home/UpdateEvent" method="post">
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">Event Name</label>
+                        <input type="text" class="form-control" name="eventName" value="@Html.DisplayFor(ModelItem => list.eventName)">
+                        <input type="hidden" class="form-control" name="id" value="@Html.DisplayFor(ModelItem => list.id)">
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label for="exampleInputEmail1">Start Date</label>
+                            <input type="datetime-local" class="form-control" name="startDate" value="@Html.DisplayFor(ModelItem => list.startDate)">
+                        </div>
+
+                        <div class="form-group col-md-6">
+                            <label for="exampleInputEmail1">End Date</label>
+                            <input type="datetime-local" class="form-control" name="endDate" value="@Html.DisplayFor(ModelItem => list.endDate)">
+                        </div>
+
+                    </div>
+
+
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">Description</label>
+                        <textarea class="form-control" name="description">@Html.DisplayFor(ModelItem => list.description)</textarea>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </form>
+            }
+
+        </div>
+    </div>
+</div>
+
+
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form action="/Home/AddEvent" method="post">
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">Event Name</label>
+                        <input type="text" class="form-control" name="eventName">
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label for="exampleInputEmail1">Start Date</label>
+                            <input type="datetime-local" class="form-control" name="startDate">
+                        </div>
+
+                        <div class="form-group col-md-6">
+                            <label for="exampleInputEmail1">End Date</label>
+                            <input type="datetime-local" class="form-control" name="endDate">
+                        </div>
+
+                    </div>
+
+
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">Description</label>
+                        <textarea class="form-control" name="description"></textarea>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </form>
             </div>
 
-            <div class="form-group col-md-6">
-                <label for="exampleInputEmail1">End Date</label>
-                <input type="datetime-local" class="form-control" name="endDate" value="@Html.DisplayFor(ModelItem => list.endDate)">
-            </div>
-
         </div>
+    </div>
+</div>
 
 
-        <div class="form-group">
-            <label for="exampleInputEmail1">Description</label>
-            <textarea class="form-control" name="description">@Html.DisplayFor(ModelItem => list.description)</textarea>
-        </div>
-
-        <button type="submit" class="btn btn-primary">Submit</button>
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-    </form>
-}
 
 
+
+@Html.Partial("FooterLinks")
+<script>
+        //CKEDITOR.replace('description');
+</script>
+</body>
+</html>

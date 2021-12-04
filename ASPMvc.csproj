@@ -1993,6 +1993,7 @@
     <Content Include="Views\Shared\HeaderLinks.cshtml" />
     <Content Include="Views\Shared\Navbar.cshtml" />
     <Content Include="Views\Shared\TopBar.cshtml" />
+    <Content Include="Views\Shared\FooterLinks.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

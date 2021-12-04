@@ -4,43 +4,81 @@
 }
 
 @Html.Partial("HeaderLinks")
-<div class="container mt-5">
-    <button type="button" class="btn btn-primary mb-3" data-toggle="modal" data-target="#exampleModal">
-        Event
-    </button>
+<div class="container-fluid">
+    <!-- Page Heading -->
+    <div class="d-sm-flex align-items-center justify-content-between mb-4">
+        <h1 class="h3 mb-0 text-gray-800">Dashboard</h1>
+        <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">
+            <i class="fas fa-download fa-sm text-white-50"></i> Generate Report
+        </a>
+    </div>
+    <div class="card shadow mb-4">
+        <!-- Card Header - Dropdown -->
+        <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+            <h6 class="m-0 font-weight-bold text-primary">Earnings Overview</h6>
+            <div class="dropdown no-arrow">
+                <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
+                   data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
+                </a>
+                <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in"
+                     aria-labelledby="dropdownMenuLink">
+                    <div class="dropdown-header">Dropdown Header:</div>
+                    <a class="dropdown-item" href="#">Action</a>
+                    <a class="dropdown-item" href="#">Another action</a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" href="#">Something else here</a>
+                </div>
+            </div>
+        </div>
+        <div class="card-body">
+            <button type="button" class="btn btn-primary mb-3" data-toggle="modal" data-target="#exampleModal">
+                Event
+            </button>
 
-    <table class="table" id="dataTable">
-        <thead>
-            <tr>
-                <th scope="col">#</th>
-                <th scope="col">Name</th>
-                <th scope="col">Start Date</th>
-                <th scope="col">End Date</th>
-                <th scope="col">Action</th>
-            </tr>
-        </thead>
-        <tbody>
+            <table class="table" id="dataTable">
+                <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">Start Date</th>
+                        <th scope="col">End Date</th>
+                        <th scope="col">Action</th>
+                        <th scope="col">Status</th>
+                    </tr>
+                </thead>
+                <tbody>
 
-            @foreach (var list in Model)
-            {
-                <tr>
-                    <th scope="row">@Html.DisplayFor(ModelItem => list.id)</th>
-                    <td>@Html.DisplayFor(ModelItem => list.eventName)</td>
-                    <td>@Html.DisplayFor(ModelItem => list.startDate)</td>
-                    <td>@Html.DisplayFor(ModelItem => list.endDate)</td>
-                    <td>
-                        <a class="btn btn-primary" href="/Home/viewinfo?id=@Html.DisplayFor(ModelItem => list.id)"><i class="bi bi-eye-fill"></i>View</a>
-                        <a class="btn btn-success" href="/Home/edit?id=@Html.DisplayFor(ModelItem => list.id)"><i class="bi bi-pencil"></i>Edit</a>
-                        <a class="btn btn-danger" href="/Home/delete?id=@Html.DisplayFor(ModelItem => list.id)"><i class="bi bi-trash"></i>Delete</a>
-                    </td>
-                </tr>
-            }
+                    @foreach (var list in Model)
+                    {
+                        <tr>
+                            <th scope="row">@Html.DisplayFor(ModelItem => list.id)</th>
+                            <td>@Html.DisplayFor(ModelItem => list.eventName)</td>
+                            <td>@Html.DisplayFor(ModelItem => list.startDate)</td>
+                            <td>@Html.DisplayFor(ModelItem => list.endDate)</td>
+                            <td>
+                                <a class="btn btn-primary" href="/Home/viewinfo?id=@Html.DisplayFor(ModelItem => list.id)"><i class="bi bi-eye-fill"></i>View</a>
+                                <a class="btn btn-success" href="/Home/edit?id=@Html.DisplayFor(ModelItem => list.id)"><i class="bi bi-pencil"></i>Edit</a>
+                                <a class="btn btn-danger" href="/Home/delete?id=@Html.DisplayFor(ModelItem => list.id)"><i class="bi bi-trash"></i>Delete</a>
+                            </td>
+                            <td>
+                                <select id="status"  data-id="@Html.DisplayFor(ModelItem => list.id)">
+                                    <option value="Pending">Pending</option>
+                                    <option value="Accept">Accept</option>
+                                    <option value="Reject">Reject</option>
+                                </select>
+                            </td>
+                        </tr>
+                    }
 
 
 
-        </tbody>
-    </table>
+                </tbody>
+            </table>
+        </div>
+    </div>
 </div>
+
 
 
 <!-- Modal -->
@@ -88,3 +126,16 @@
     </div>
 </div>
 
+
+@Html.Partial("FooterLinks")
+<script>
+    $(document).ready(function () {
+        $("#dataTable").on('change','#status', function () {
+            let status = $("#status").val();
+            let id = $(this).attr("data-id")
+            console.log(status,id)
+        })
+    })
+</script>
+</body>
+</html>
